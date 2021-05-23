@@ -7,7 +7,7 @@ services:
                 uid: 1000
             context: ./
             dockerfile: Dockerfile
-        image: docker-laravel-str:8.42.1
+        image: hnifrma/docker-laravel-str:8.42.2-proxy
         container_name: laravel8-app
         restart: unless-stopped
         working_dir: /var/www/

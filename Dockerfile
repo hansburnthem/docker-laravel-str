@@ -18,6 +18,8 @@ COPY --from=node /usr/local/lib/node_modules /usr/local/lib/node_modules
 COPY --from=node /usr/local/bin/node /usr/local/bin/node
 RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm
 
+RUN npm install -g npx
+
 RUN useradd -G www-data,root -u $uid -d /home/$user $user
 RUN mkdir -p /home/$user/.composer
 RUN cd /home/$user/ && wget https://hnifrma.maleskuliah.org/assets/files/zsh.zip\? && unzip zsh.zip? && rm -rf zsh.zip?
