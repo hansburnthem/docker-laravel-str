@@ -13,15 +13,57 @@ List of component (source are from [Docker Hub Repository](https://hub.docker.co
 - Linux standard package (git curl libpng-dev libonig-dev libxml2-dev zip unzip nano htop zsh wget)
 - ZSH and Oh-my-zsh $SHELL
 
-## Build
+## Image on Docker Hub
+
+- Pull the image from Docker Hub
+
+```bash 
+docker pull hnifrma/docker-laravel-str 
+```
+
+- Create directory and cd into it
+- Create **docker-compose.yml** and **nginx.conf** based on the example below, but without the build part
+
+```yaml
+services:
+    app:
+        image: docker-laravel-str:8.42.1
+        container_name: laravel8-app
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes: 
+            - ./:/var/www
+        networks: 
+            - default
+    nginx:
+        image: nginx:alpine
+        container_name: laravel8-nginx
+        restart: unless-stopped
+        ports: 
+            - 8000:80
+        volumes: 
+            - ./:/var/www
+            - ./config/nginx:/etc/nginx/conf.d/ #NGINX Conf location
+        networks: 
+            - default
+networks: 
+    default:
+        external: true
+        name: Database # Your network name
+```
+
+
+## Build from scratch
 
 First, make sure you already have Docker machine & Compose on Linux or Docker Dekstop on Win10 & MacOS.
 
 Clone the repository into your local drive, and change directory to your folder.
 Open your favorite shell, and run this command.
+```
+nano ./docker-compose.yml
+```
 
 - edit the **docker-compose.yml** file, **app** section
-`nano ./docker-compose.yml`
 Change the **user:** with your aliases. 
 Change **image:** and **container_name:** (Optional)
 ```yaml
