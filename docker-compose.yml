@@ -5,9 +5,11 @@ services:
             args: 
                 user: hansburnthem
                 uid: 1000
+                proxyHttp: http://192.192.10.31:8080
+                proxyHttps: http://192.192.10.31:8080
             context: ./
             dockerfile: Dockerfile
-        image: hnifrma/docker-laravel-str:8.42.2-proxy
+        image: hnifrma/docker-laravel-str:8.42.1-1.0-proxy
         container_name: laravel8-app
         restart: unless-stopped
         working_dir: /var/www/
