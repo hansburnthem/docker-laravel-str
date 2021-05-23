@@ -26,35 +26,35 @@ Change the **user:** with your aliases.
 Change **image:** and **container_name:** (Optional)
 ```yaml
 app:
-        build: 
-            args: 
-                user: hansburnthem
-                uid: 1000
-            context: ./
-            dockerfile: Dockerfile
-        image: docker-laravel-str:8.42.1
-        container_name: laravel8-app
-        restart: unless-stopped
-        working_dir: /var/www/
-        volumes: 
-            - ./:/var/www
-        networks: 
-            - default
+    build: 
+        args: 
+            user: hansburnthem
+            uid: 1000
+        context: ./
+        dockerfile: Dockerfile
+    image: docker-laravel-str:8.42.1
+    container_name: laravel8-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes: 
+        - ./:/var/www
+    networks: 
+        - default
 ```
 - edit the **docker-compose.yml** file, **nginx** section
 Change **container_name:** (Optional)
 ```yaml
 nginx:
-        image: nginx:alpine
-        container_name: laravel8-nginx
-        restart: unless-stopped
-        ports: 
-            - 8000:80
-        volumes: 
-            - ./:/var/www
-            - ./config/nginx:/etc/nginx/conf.d/
-        networks: 
-            - default
+    image: nginx:alpine
+    container_name: laravel8-nginx
+    restart: unless-stopped
+    ports: 
+        - 8000:80
+    volumes: 
+        - ./:/var/www
+        - ./config/nginx:/etc/nginx/conf.d/
+    networks: 
+        - default
 ```
 - edit the **docker-compose.yml** file, **name** section
 Change **name:** to your database docker network. 
