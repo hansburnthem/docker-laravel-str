@@ -7,8 +7,8 @@ services:
                 uid: 1000
             context: ./
             dockerfile: Dockerfile
-        image: laravel8
-        container_name: testing-app
+        image: docker-laravel-str:8.42.1
+        container_name: laravel8-app
         restart: unless-stopped
         working_dir: /var/www/
         volumes: 
@@ -18,13 +18,13 @@ services:
     
     nginx:
         image: nginx:alpine
-        container_name: testing-nginx
+        container_name: laravel8-nginx
         restart: unless-stopped
         ports: 
             - 8000:80
         volumes: 
             - ./:/var/www
-            - ./docker-compose/nginx:/etc/nginx/conf.d/
+            - ./config/nginx:/etc/nginx/conf.d/
         networks: 
             - default
 
